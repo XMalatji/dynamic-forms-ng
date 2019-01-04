@@ -17,9 +17,11 @@ export class AppComponent implements OnInit {
   daForm: FormGroup;
 
   ngOnInit() {
-    this.daForm = new FormGroup({
-      [this.fieldName]: new FormControl(this.fieldVal),
+    const formDataObj = {};
 
-    });
+    for (const prop of Object.keys(this.user)) {
+      formDataObj[prop] = new FormControl(this.user[prop]);
+    }
+    this.daForm = new FormGroup(formDataObj);
   }
 }
